@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BSE Trade Simulator</title>
+    <link rel="stylesheet" href="static/css/style.css">
+  </head>
+  <body>
+    <h1>BSE Trade Simulator</h1>
+    <form action = '/' method = 'POST'>
+      <label for="tradingPrice">Trading Price:</label>
+      <input type="number" id="tradingPrice" name="tradingPrice"><br><br>
+
+      <label for="buyerTeam">Buyer Team:</label>
+      <input type="number" id="buyerTeam" name="buyerTeam"><br><br>
+
+      <label for="sellerTeam">Seller Team:</label>
+      <input type="number" id="sellerTeam" name="sellerTeam"><br><br>
+
+      <label for="numStocks">Number of Stocks:</label>
+      <input type="number" id="numStocks" name="numStocks"><br><br>
+
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    
+    <h2 id="newPrice">CMP: <div id="cmp"></div></h2>
+
+    <h3>Trade Details</h3>
+    <table id="tradeDetails">
+      <thead>
+        <tr>
+          <th>Buyer</th>
+          <th>Seller</th>
+          <th>Trading Price</th>
+          <th>Number of Stocks</th>
+          <th>CMP</th>
+        </tr>
+      </thead>
+      <tbody id="output1"></tbody>
+    </table>
+
+    <h3>Funds</h3>
+    <table id="funds">
+      <thead>
+        <tr>
+          <th>Team 1</th>
+          <th>Team 2</th>
+        </tr>
+      </thead>
+      <tbody id="output2"></tbody>
+    </table>
+
+    <h3>Stocks</h3>
+    <table id="stocks">
+      <thead>
+        <tr>
+          <th>Team 1</th>
+          <th>Team 2</th>
+        </tr>
+      </thead>
+      <tbody id="output3"></tbody>
+      
+    </table>
+
+   
+     <script>
+      const form = document.querySelector('form');
+      const tradeDetailsTable = document.getElementById('tradeDetails').getElementsByTagName('tbody')[0];
+      const fundsTable = document.getElementById('funds').getElementsByTagName('tbody')[0];
+      const stocksTable = document.getElementById('stocks').getElementsByTagName('tbody')[0];
+      const newPrice = document.getElementById('newPrice');
+      const submitBtn = document.getElementById('submitBtn');
+
+      let buyer;
+      let seller;
+      let No_of_stocks;
+      let trading_price;
+      let cmp = 500;
+      let total_stocks = 100;
+      let number_of_teams = 2;
+      let fund = Array(number_of_teams).fill(10000);
+      let stocks = Array(number_of_teams).fill(total_stocks/number_of_teams);
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        trading_price = parseInt(document.getElementById('tradingPrice').value);
+        buyer = parseInt(document.getElementById('buyerTeam').value);
+        seller = parseInt(document.getElementById('sellerTeam').value);
+        No_of_stocks = parseInt(document.getElementById('numStocks').value);
+
+        if(fund[buyer-1] >= No_of_stocks * trading_price) {
+          let key = prompt("Settle Fund & stocks(y/n)");
+
+          if(key === "y" || key === "Y") {
+                //Enter trade details to console
+          console.log(`Trade Details: buyer-${buyer}, seller-${seller}, trading_price-${trading_price}, No_of_stocks-${No_of_stocks}, cmp-${cmp}\n`);
+          
+          //Enter funds detail...
+          fund[buyer-1] -= No_of_stocks * trading_price;
+          fund[seller-1] += No_of_stocks * trading_price;
+          console.log(`Updated Funds: [${fund.join(", ")}]\n`);
+
+          //Enter stocks detail...
+          stocks[buyer-1] += No_of_stocks;
+          stocks[seller-1] -= No_of_stocks;
+          console.log(`Updated Stocks: [${stocks.join(", ")}]\n`);
+          
+          let change = (No_of_stocks*trading_price)-(No_of_stocks*cmp);   
+          let new_price = cmp + (change*5)/total_stocks;
+          cmp = new_price;
+          const output1 = document.getElementById('output1');
+          const output2 = document.getElementById('output2');
+          const output3 = document.getElementById('output3');
+          const maa = document.getElementById('cmp')
+          maa.innerHTML = `<p style="font-size: 32px">New price : ${cmp}</p>`;
+          output1.innerHTML += `              <tr>
+                <td>${buyer}</td>
+                <td>${seller}</td>
+                <td>${trading_price}</td>
+                <td>${No_of_stocks}</td>
+                <td>${cmp}</td>
+              </tr>`
+          
+              output2.innerHTML +=
+            `
+              <tr>
+               
+                <td>${fund[0]}</td>
+                <td>${fund[1]}</td>
+              </tr>
+              `
+              output3.innerHTML +=`<tr>
+                
+                <td>${stocks[0]}</td>
+                <td>${stocks[1]}</td>
+              </tr>`;
+          
+        }
+      else {
+        output.innerHTML += "<p>Bhai paise nahi he tere pass.</p>";
+      }
+    }
+  });
+
+  function saveToCsv(filename, data) {
+    let csvContent = "data:text/csv;charset=utf-8," + data;
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", filename);
+    link.click();
+  }
+</script>
+  </body>
+</html>

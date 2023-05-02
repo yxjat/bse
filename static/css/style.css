@@ -1,0 +1,216 @@
+:root {
+    --dark-blue: #1f2430;
+    --light-blue: #364d6f;
+    --green: #4caf50;
+    --red: #e53935;
+  }
+  
+  /* Body styles */
+  body {
+    background-color: var(--light-blue);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Header styles */
+  h1 {
+    color: white;
+    text-align: center;
+    font-size: 48px;
+    margin-top: 50px;
+  }
+  
+  /* Form styles */
+  form {
+    margin: 50px auto;
+    width: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  input[type="number"] {
+    font-size: 24px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  
+  button[type="submit"] {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #43a047;
+  }
+  
+  /* Output styles */
+  #output {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  /* Trade details table styles */
+  #tradeDetails {
+    margin-top: 50px;
+    width: 80%;
+    margin: 50px auto;
+    border-collapse: collapse;
+  }
+  
+  #tradeDetails th {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  #tradeDetails td {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--light-blue);
+  }
+  
+  /* Funds table styles */
+  #funds {
+    margin-top: 50px;
+    width: 80%;
+    margin: 50px auto;
+    border-collapse: collapse;
+  }
+  
+  #funds th {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  #funds td {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--light-blue);
+  }
+  
+  /* Stocks table styles */
+  #stocks {
+    margin-top: 50px;
+    width: 80%;
+    margin: 50px auto;
+    border-collapse: collapse;
+  }
+  
+  #stocks th {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  #stocks td {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--light-blue);
+  }
+  
+  /* New price styles */
+  #newPrice {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 36px;
+    color: var(--green);
+    animation: pulse 1s infinite;
+  }
+
+  h3{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 36px;
+    color: black;
+    
+  }
+  
+  @keyframes pulse {
+    0% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.2);
+    }
+    100% {
+    transform: scale(1);
+    }
+    }
+    
+    /* Button styles */
+    .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    
+    .button:hover {
+    background-color: var(--light-green);
+    }
+    
+    /* Form styles */
+    .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    }
+    
+    .form label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    }
+    
+    .form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+    
+    .form input[type="submit"] {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    }
+    
+    /* Footer styles */
+    .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: var(--light-blue);
+    color: #fff;
+    font-size: 24px;
+    }
